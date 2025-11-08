@@ -58,8 +58,9 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse,
 ) {
-  const { secret } = req.query;
-  if (secret !== process.env.CRON_SECRET) {
+  const authHeader = req.headers['authorization'];
+  console.log(authHeader);
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).send('Unauthorized: Access Denied');
   }
   if (req.method !== 'GET') {

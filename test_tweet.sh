@@ -15,7 +15,5 @@ if [ -z "$CRON_SECRET" ]; then
   exit 1
 fi
 
-ENCODED_SECRET=$(node -e "console.log(encodeURIComponent('$CRON_SECRET'))")
-
-curl --fail "http://localhost:3000/api/daily?secret=$ENCODED_SECRET"
+curl --fail -H "Authorization: Bearer $CRON_SECRET" "http://localhost:3000/api/daily"
 echo ""
