@@ -1,4 +1,4 @@
-# hakyng-x-bots-monorepo
+# hakyng-x-bots
 
 재미있는 X(트위터) 봇을 개발하고 있습니다.
 

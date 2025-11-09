@@ -1,5 +1,5 @@
 {
-  "name": "hakyung-x-bots-monorepo",
+  "name": "hakyung-x-bots",
   "private": true,
   "scripts": {
     "start:dev": "vercel dev",
