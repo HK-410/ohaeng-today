@@ -2,7 +2,7 @@
   "name": "hakyung-x-bots-monorepo",
   "private": true,
   "scripts": {
-    "dev": "vercel dev",
+    "start:dev": "vercel dev",
     "build": "pnpm --filter \"@hakyung/x-bot-toolkit\" run build"
   },
   "keywords": [],
