@@ -3,9 +3,15 @@ import axios from 'axios';
 import TurndownService from 'turndown';
 import * as cheerio from 'cheerio';
 import { GroqClient, TwitterClient } from '@hakyung/x-bot-toolkit';
-import { getEventsForDate } from '../data/events';
+import { getEventsForDate } from '@/data/events';
 
-const handler = async (req: VercelRequest, res: VercelResponse) => {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  
   const runIdentifier = Math.random().toString(36).substring(7);
   console.log(`[${runIdentifier}] Function start.`);
 
@@ -45,7 +51,7 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
     const todaysSpecialEvents = getEventsForDate(kstDate);
 
     const formattedSpecialEvents = todaysSpecialEvents.map(event => {
-        let eventString = event.description;
+        let eventString = `[${event.name}] ${event.description}`;
         if (event.startYear) {
             const anniversary = year - event.startYear;
             if (anniversary > 0) {
@@ -100,7 +106,9 @@ const handler = async (req: VercelRequest, res: VercelResponse) => {
 
         const contentHtml = $('.mw-parser-output').html();
         
-        observances = turndownService.turndown(contentHtml);
+        if (contentHtml) {
+          observances = turndownService.turndown(contentHtml);
+        }
         console.log("result:::", observances);
       }
     } catch (apiError) {
@@ -174,6 +182,4 @@ Follow the instructions to create a tweet.`;
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     res.status(500).send(`Error: ${errorMessage}`);
   }
-};
-
-export default handler;
+}

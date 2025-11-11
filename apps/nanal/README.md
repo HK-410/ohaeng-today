@@ -1,26 +1,40 @@
-# 나날 (NaNal)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## 🎯 프로젝트 목표
+## Getting Started
 
-매일 00:00 KST(한국 표준시)에 그날의 기념일 정보를 트위터에 자동으로 게시하는 봇입니다.
+First, run the development server:
 
-## ✨ 핵심 기능
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **매일 자동 실행**: Vercel Cron Job을 사용하여 매일 자정에 서버리스 함수를 실행합니다.
-- **정보 소스**: 영문 위키피디아(`https://en.wikipedia.org/wiki/`)에서 실행 당일 날짜 페이지의 'Holidays and observances' 섹션을 크롤링하여 정보를 수집합니다.
-- **콘텐츠 생성**: Groq API(LLM)를 활용하여 수집된 정보를 바탕으로 사용자들이 흥미를 느낄 만한 재치 있는 트윗 문구를 생성합니다.
-- **트위터 게시**: 생성된 콘텐츠를 지정된 트위터 계정에 자동으로 게시합니다.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## ✍️ 콘텐츠 전략
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-- **우선순위**: 대한민국의 기념일을 최우선으로 다룹니다.
-- **다양성**: 전 세계의 흥미롭거나 잘 알려지지 않은 기념일을 함께 소개해 콘텐츠의 재미를 더합니다.
-- **톤앤매너**: 유익하면서도 재치와 친근함이 느껴지는 어조를 유지합니다.
+[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-## 🛠️ 기술 스택
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
-- **언어**: TypeScript
-- **플랫폼**: Vercel Serverless Functions
-- **데이터 수집**: Wikipedia 크롤링 (`axios`, `cheerio` 등 활용)
-- **콘텐츠 생성**: `groq-sdk`
-- **트위터 연동**: `twitter-api-v2`
+This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
