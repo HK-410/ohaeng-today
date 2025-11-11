@@ -14,7 +14,7 @@ export default async function handler(
   console.log(`[${runIdentifier}] Function start.`);
 
   // 1. Authenticate cron job request
-  if (req.headers['authorization']?.split(' ')[1] === process.env.CRON_SECRET) {
+  if (req.headers['authorization']?.split(' ')[1] !== process.env.CRON_SECRET) {
     console.log(`[${runIdentifier}] Unauthorized access attempt.`);
     return res.status(401).send('Unauthorized');
   }
