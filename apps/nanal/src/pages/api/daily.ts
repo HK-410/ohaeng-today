@@ -1,4 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 import axios from 'axios';
 import TurndownService from 'turndown';
 import * as cheerio from 'cheerio';
