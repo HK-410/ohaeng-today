@@ -1,6 +1,7 @@
 import KoreanLunarCalendar from 'korean-lunar-calendar';
 import { GroqClient, TwitterClient, LlmResponse } from '@hakyung/x-bot-toolkit';
 import type { NextApiRequest, NextApiResponse } from "next";
+import axios from 'axios';
 
 // Specific data structures for this bot
 interface LlmReply {
@@ -275,8 +276,12 @@ ${reply.explanation}
 
 🍀 행운의 아이템: ${reply.lucky_item}`
       );
-      await twitterClient.postThread(mainTweetContent, replyContents);
+      // await twitterClient.postThread(mainTweetContent, replyContents);
       console.log(`[${runIdentifier}] Successfully posted tweet thread.`);
+
+      const weatherfairyResponse = await axios.get(`https://${process.env.WEATHERFAIRY_DOMAIN}/api/daily`, { headers: { Authorization: `Bearer ${process.env.WEATHERFAIRY_CRON_SECRET}` } });
+
+      console.log(`[${runIdentifier}] Success to invoke weather fairy (${JSON.stringify(weatherfairyResponse.data)})`)
     } else {
       console.log(`[${runIdentifier}] --- DRY RUN ---`);
       console.log(`[${runIdentifier}] [Main Tweet] (${twitterClient.calculateBytes(mainTweetContent)} bytes):\n${mainTweetContent}`);
@@ -290,6 +295,10 @@ ${reply.explanation}
         console.log(`[${runIdentifier}] [Reply ${reply.rank}] (${twitterClient.calculateBytes(replyContent)} bytes):\n${replyContent}`);
         console.log('---------------------------------');
       }
+
+      const weatherfairyResponse = await axios.get(`https://${process.env.WEATHERFAIRY_DOMAIN}/api/daily?dryrun=true`, { headers: { Authorization: `Bearer ${process.env.WEATHERFAIRY_CRON_SECRET}` } });
+
+      console.log(`[${runIdentifier}] Success to invoke weather fairy (${JSON.stringify(weatherfairyResponse.data)})`)
     }
 
     return res.status(200).json({
