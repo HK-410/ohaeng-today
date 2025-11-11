@@ -10,7 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  
   const runIdentifier = Math.random().toString(36).substring(7);
   console.log(`[${runIdentifier}] Function start.`);
 
