@@ -24,3 +24,17 @@ dist/
 api/**/*.js
 api/**/*.js.map
 .vercel
+
+# Next.js / core application
+.next/
+.swc/
+/core/out/
+next-telemetry.json
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+coverage/
+reports/
+junit.xml
+*.tsbuildinfo

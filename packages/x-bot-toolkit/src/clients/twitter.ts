@@ -11,6 +11,22 @@ export interface TwitterClientConfig {
 }
 
 /**
+ * Parses a semicolon-delimited string into a TwitterClientConfig object.
+ * @param credentials The string containing credentials in the format "appKey;appSecret;accessToken;accessSecret".
+ * @returns A TwitterClientConfig object.
+ */
+export function parseTwitterCredentials(credentials: string): TwitterClientConfig {
+  if (!credentials) {
+    throw new Error('Twitter credentials string is empty or undefined.');
+  }
+  const [appKey, appSecret, accessToken, accessSecret] = credentials.split(';');
+  if (!appKey || !appSecret || !accessToken || !accessSecret) {
+    throw new Error('Invalid Twitter credentials string format. Expected "appKey;appSecret;accessToken;accessSecret".');
+  }
+  return { appKey, appSecret, accessToken, accessSecret };
+}
+
+/**
  * A client for interacting with the Twitter API v2.
  */
 export class TwitterClient {
